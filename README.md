@@ -4,6 +4,15 @@ libhpdf Android Library
 This is an Android library project that provides JNI support for the
 [libhpdf][1] (libHaru) native PDF generation library.
 
+Currently Supports
+------------------
+
+* Creating PDF document
+* Adding/inserting pages
+* Setting/getting page size
+* Setting stroke color, stroke width, and drawing lines
+* Saving PDF to a file
+
 Developed By
 ------------
 

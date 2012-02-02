@@ -1,3 +1,8 @@
+# Android
 gen/
 bin/
 obj/
+
+# Eclipse
+.project
+.cproject
