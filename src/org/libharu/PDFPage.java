@@ -32,21 +32,21 @@ public class PDFPage {
     /**
      * The page direction.
      */
-    public static enum Direction {
+    public enum Direction {
         PORTRAIT, LANDSCAPE
     }
 
     /**
      * The shape used at the end of lines.
      */
-    public static enum LineCap {
+    public enum LineCap {
         BUTT_END, ROUND_END, PROJECTING_SQUARE_END
     }
 
     /**
      * The style used to join lines.
      */
-    public static enum LineJoin {
+    public enum LineJoin {
         MITER_JOIN, ROUND_JOIN, BEVEL_JOIN
     }
 
