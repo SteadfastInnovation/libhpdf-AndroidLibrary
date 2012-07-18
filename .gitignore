@@ -1,8 +1,16 @@
-# Android
-gen/
-bin/
-obj/
+#Android
+gen
+bin
+obj
+lint.xml
 
-# Eclipse
+#Eclipse
 .project
 .cproject
+
+#Ant
+local.properties
+
+#Other
+.DS_Store
+tmp
