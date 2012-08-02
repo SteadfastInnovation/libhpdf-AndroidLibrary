@@ -18,7 +18,7 @@ package org.libharu;
 
 import java.util.LinkedList;
 
-public class PDFDocument {
+public class PdfDocument {
     static {
         System.loadLibrary("hpdf");
         initIDs();
@@ -28,12 +28,12 @@ public class PDFDocument {
     private boolean mClosed = false;
 
     /** The pages that make up this document */
-    private LinkedList<PDFPage> mPages = new LinkedList<PDFPage>();
+    private LinkedList<PdfPage> mPages = new LinkedList<PdfPage>();
 
     /** Handle to the document. */
     protected int mHPDFDocPointer;
 
-    private PDFDocument() {
+    private PdfDocument() {
     }
 
     /**
@@ -44,8 +44,8 @@ public class PDFDocument {
      * 
      * @return The new PDF document on success, <code>null</code> on failure.
      */
-    public static PDFDocument createPDF() {
-        PDFDocument pdf = new PDFDocument();
+    public static PdfDocument createPdf() {
+        PdfDocument pdf = new PdfDocument();
         if (pdf.create()) {
             return pdf;
         }
@@ -54,7 +54,7 @@ public class PDFDocument {
 
     /**
      * Create a new PDF document from an existing document. If the existing document hasn't been
-     * destroyed, it is first destroyed and the replaced by a new document.
+     * destroyed, it is first destroyed and then replaced by a new document.
      * <p>
      * NOTE: When finished with the document, you MUST call {@link #close()} to free the document in
      * native memory.
@@ -62,7 +62,7 @@ public class PDFDocument {
      * @param pdf The document to recycle and create the new document from.
      * @return True on success, otherwise false.
      */
-    public static boolean createPDF(PDFDocument pdf) {
+    public static boolean createPdf(PdfDocument pdf) {
         if (create(pdf.mHPDFDocPointer)) {
             pdf.mClosed = false;
             return true;
@@ -92,8 +92,8 @@ public class PDFDocument {
      * 
      * @return The new page that was added.
      */
-    public PDFPage addPage() {
-        PDFPage page = new PDFPage(this);
+    public PdfPage addPage() {
+        PdfPage page = new PdfPage(this);
         mPages.add(page);
         return page;
     }
@@ -104,9 +104,9 @@ public class PDFDocument {
      * @param pageNum The page number indicating where to insert the new page.
      * @return The new page that was inserted.
      */
-    public PDFPage insertPage(int pageNum) {
-        PDFPage target = mPages.get(pageNum);
-        PDFPage page = new PDFPage(this, target);
+    public PdfPage insertPage(int pageNum) {
+        PdfPage target = mPages.get(pageNum);
+        PdfPage page = new PdfPage(this, target);
         mPages.add(pageNum, page);
         return page;
     }
@@ -117,9 +117,9 @@ public class PDFDocument {
      * @param target The page that the new page should be inserted before.
      * @return The new page that was inserted.
      */
-    public PDFPage insertPage(PDFPage target) {
+    public PdfPage insertPage(PdfPage target) {
         int pageNum = mPages.indexOf(target);
-        PDFPage page = new PDFPage(this, target);
+        PdfPage page = new PdfPage(this, target);
         mPages.add(pageNum, page);
         return page;
     }

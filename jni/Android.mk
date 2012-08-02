@@ -87,8 +87,8 @@ hpdf_sources := hpdf_3dmeasure.c \
                 hpdf_utils.c \
                 hpdf_xref.c
 
-jni_sources := org_libharu_PDFDocument.c \
-               org_libharu_PDFPage.c
+jni_sources := org_libharu_PdfDocument.c \
+               org_libharu_PdfPage.c
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/libpng-1.5.7 \

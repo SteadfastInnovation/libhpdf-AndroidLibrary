@@ -16,7 +16,7 @@
 
 package org.libharu;
 
-public class PDFPage {
+public class PdfPage {
     static {
         System.loadLibrary("hpdf");
         initIDs();
@@ -60,7 +60,7 @@ public class PDFPage {
      * 
      * @param pdf The PDF document to add a page to.
      */
-    protected PDFPage(PDFDocument pdf) {
+    protected PdfPage(PdfDocument pdf) {
         create(pdf.mHPDFDocPointer);
     }
 
@@ -71,7 +71,7 @@ public class PDFPage {
      * @param pdf The PDF document to add a page to.
      * @param target The page to insert the new page before.
      */
-    protected PDFPage(PDFDocument pdf, PDFPage target) {
+    protected PdfPage(PdfDocument pdf, PdfPage target) {
         insertPage(pdf.mHPDFDocPointer, target.mHPDFPagePointer);
     }
 

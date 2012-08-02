@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "org_libharu_PDFPage.h"
+#include "org_libharu_PdfPage.h"
 #include "hpdf.h"
 #include <stdio.h>
 
@@ -64,12 +64,12 @@ jfieldID mHPDFPagePointer;
 jfieldID mParentHPDFDocPointer;
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    initIDs
  * Signature: ()V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_initIDs (JNIEnv *env, jclass cls) {
+Java_org_libharu_PdfPage_initIDs(JNIEnv *env, jclass cls) {
     jfieldID fid;
 
     mHPDFPagePointer = (*env)->GetFieldID(env, cls, "mHPDFPagePointer", "I");
@@ -84,12 +84,12 @@ Java_org_libharu_PDFPage_initIDs (JNIEnv *env, jclass cls) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    create
  * Signature: (I)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_create (JNIEnv *env, jobject obj, jint pdf) {
+Java_org_libharu_PdfPage_create(JNIEnv *env, jobject obj, jint pdf) {
     HPDF_Page page;
     /* Create and add the new page */
     page = HPDF_AddPage((HPDF_Doc) pdf);
@@ -104,12 +104,12 @@ Java_org_libharu_PDFPage_create (JNIEnv *env, jobject obj, jint pdf) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    insertPage
  * Signature: (II)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_insertPage (JNIEnv *env, jobject obj, jint pdf, jint target) {
+Java_org_libharu_PdfPage_insertPage(JNIEnv *env, jobject obj, jint pdf, jint target) {
     HPDF_Page page;
     /* Create and insert the new page before the target page */
     page = HPDF_InsertPage((HPDF_Doc) pdf, (HPDF_Page) target);
@@ -124,12 +124,12 @@ Java_org_libharu_PDFPage_insertPage (JNIEnv *env, jobject obj, jint pdf, jint ta
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    setSize
  * Signature: (II)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_setSize (JNIEnv *env, jobject obj, jint size, jint direction) {
+Java_org_libharu_PdfPage_setSize(JNIEnv *env, jobject obj, jint size, jint direction) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -138,12 +138,12 @@ Java_org_libharu_PDFPage_setSize (JNIEnv *env, jobject obj, jint size, jint dire
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    setWidth
  * Signature: (F)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_setWidth (JNIEnv *env, jobject obj, jfloat width) {
+Java_org_libharu_PdfPage_setWidth(JNIEnv *env, jobject obj, jfloat width) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -152,12 +152,12 @@ Java_org_libharu_PDFPage_setWidth (JNIEnv *env, jobject obj, jfloat width) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    setHeight
  * Signature: (F)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_setHeight (JNIEnv *env, jobject obj, jfloat height) {
+Java_org_libharu_PdfPage_setHeight(JNIEnv *env, jobject obj, jfloat height) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -166,12 +166,12 @@ Java_org_libharu_PDFPage_setHeight (JNIEnv *env, jobject obj, jfloat height) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    getWidth
  * Signature: ()F
  */
 JNIEXPORT jfloat JNICALL
-Java_org_libharu_PDFPage_getWidth (JNIEnv *env, jobject obj) {
+Java_org_libharu_PdfPage_getWidth(JNIEnv *env, jobject obj) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -179,12 +179,12 @@ Java_org_libharu_PDFPage_getWidth (JNIEnv *env, jobject obj) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    getHeight
  * Signature: ()F
  */
 JNIEXPORT jfloat JNICALL
-Java_org_libharu_PDFPage_getHeight (JNIEnv *env, jobject obj) {
+Java_org_libharu_PdfPage_getHeight(JNIEnv *env, jobject obj) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -192,12 +192,12 @@ Java_org_libharu_PDFPage_getHeight (JNIEnv *env, jobject obj) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    getLineWidth
  * Signature: ()F
  */
 JNIEXPORT jfloat JNICALL
-Java_org_libharu_PDFPage_getLineWidth (JNIEnv *env, jobject obj) {
+Java_org_libharu_PdfPage_getLineWidth(JNIEnv *env, jobject obj) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -205,12 +205,12 @@ Java_org_libharu_PDFPage_getLineWidth (JNIEnv *env, jobject obj) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    setLineCap
  * Signature: (I)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_setLineCap (JNIEnv *env, jobject obj, jint lineCap) {
+Java_org_libharu_PdfPage_setLineCap(JNIEnv *env, jobject obj, jint lineCap) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -218,12 +218,12 @@ Java_org_libharu_PDFPage_setLineCap (JNIEnv *env, jobject obj, jint lineCap) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    setLineJoin
  * Signature: (I)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_setLineJoin (JNIEnv *env, jobject obj, jint lineJoin) {
+Java_org_libharu_PdfPage_setLineJoin(JNIEnv *env, jobject obj, jint lineJoin) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -231,12 +231,12 @@ Java_org_libharu_PDFPage_setLineJoin (JNIEnv *env, jobject obj, jint lineJoin) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    setLineWidth
  * Signature: (F)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_setLineWidth (JNIEnv *env, jobject obj, jfloat lineWidth) {
+Java_org_libharu_PdfPage_setLineWidth(JNIEnv *env, jobject obj, jfloat lineWidth) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -244,12 +244,12 @@ Java_org_libharu_PDFPage_setLineWidth (JNIEnv *env, jobject obj, jfloat lineWidt
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    setRGBFill
  * Signature: (FFF)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_setRGBFill (JNIEnv *env, jobject obj, jfloat red, jfloat green, jfloat blue) {
+Java_org_libharu_PdfPage_setRGBFill(JNIEnv *env, jobject obj, jfloat red, jfloat green, jfloat blue) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -257,12 +257,13 @@ Java_org_libharu_PDFPage_setRGBFill (JNIEnv *env, jobject obj, jfloat red, jfloa
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    setRGBStroke
  * Signature: (FFF)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_setRGBStroke (JNIEnv *env, jobject obj, jfloat red, jfloat green, jfloat blue) {
+Java_org_libharu_PdfPage_setRGBStroke(JNIEnv *env, jobject obj, jfloat red, jfloat green,
+        jfloat blue) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -270,12 +271,12 @@ Java_org_libharu_PDFPage_setRGBStroke (JNIEnv *env, jobject obj, jfloat red, jfl
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    moveTo
  * Signature: (FF)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_moveTo (JNIEnv *env, jobject obj, jfloat x, jfloat y) {
+Java_org_libharu_PdfPage_moveTo(JNIEnv *env, jobject obj, jfloat x, jfloat y) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -283,12 +284,12 @@ Java_org_libharu_PDFPage_moveTo (JNIEnv *env, jobject obj, jfloat x, jfloat y) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    lineTo
  * Signature: (FF)V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_lineTo (JNIEnv *env, jobject obj, jfloat x, jfloat y) {
+Java_org_libharu_PdfPage_lineTo(JNIEnv *env, jobject obj, jfloat x, jfloat y) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -296,12 +297,12 @@ Java_org_libharu_PDFPage_lineTo (JNIEnv *env, jobject obj, jfloat x, jfloat y) {
 }
 
 /*
- * Class:     org_libharu_PDFPage
+ * Class:     org_libharu_PdfPage
  * Method:    stroke
  * Signature: ()V
  */
 JNIEXPORT void JNICALL
-Java_org_libharu_PDFPage_stroke (JNIEnv *env, jobject obj) {
+Java_org_libharu_PdfPage_stroke(JNIEnv *env, jobject obj) {
     jint page;
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
