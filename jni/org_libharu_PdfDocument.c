@@ -75,8 +75,6 @@ Java_org_libharu_PdfDocument_create__I(JNIEnv *env, jclass cls, jint pdf) {
         return JNI_FALSE;
     }
 
-    // TODO: set mHPDFDocPointer
-
     return JNI_TRUE;
 }
 
@@ -123,23 +121,32 @@ Java_org_libharu_PdfDocument_freeDocAll(JNIEnv *env, jclass cls, jint pdf) {
  */
 JNIEXPORT jboolean JNICALL
 Java_org_libharu_PdfDocument_saveToFile(JNIEnv *env, jobject obj, jstring filename) {
+    jboolean success = JNI_FALSE;
+
     /* Get mHPDFDocPointer */
     jint pdf = (*env)->GetIntField(env, obj, mHPDFDocPointer);
+
     /* Get filename */
     const char *name = (*env)->GetStringUTFChars(env, filename, NULL);
+
     /* Save to file */
     HPDF_STATUS status = HPDF_SaveToFile((HPDF_Doc) pdf, name);
     if (status == HPDF_OK) {
-        return JNI_TRUE;
+        success = JNI_TRUE;
+    } else {
+        if (status == HPDF_INVALID_DOCUMENT) {
+            LOGE("Error saving to file %s: HPDF_INVALID_DOCUMENT", name);
+        } else if (status == HPDF_FAILD_TO_ALLOC_MEM) {
+            LOGE("Error saving to file %s: HPDF_FAILD_TO_ALLOC_MEM", name);
+        } else if (status == HPDF_FILE_IO_ERROR) {
+            LOGE("Error saving to file %s: HPDF_FILE_IO_ERROR", name);
+        }
     }
-    if (status == HPDF_INVALID_DOCUMENT) {
-        LOGE("Error saving to file %s: HPDF_INVALID_DOCUMENT", name);
-    } else if (status == HPDF_FAILD_TO_ALLOC_MEM) {
-        LOGE("Error saving to file %s: HPDF_FAILD_TO_ALLOC_MEM", name);
-    } else if (status == HPDF_FILE_IO_ERROR) {
-        LOGE("Error saving to file %s: HPDF_FILE_IO_ERROR", name);
-    }
-    return JNI_FALSE;
+
+    /* Release the native char array */
+    (*env)->ReleaseStringUTFChars(env, filename, name);
+
+    return success;
 }
 
 /*
