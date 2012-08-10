@@ -12,6 +12,17 @@ Currently Supports
 * Setting/getting page size
 * Setting stroke color, stroke width, and drawing lines
 * Saving PDF to a file
+* PDF compression
+* Most PDF graphics commands
+
+Current Missing Graphics Commands
+---------------------------------
+
+* executeXObject
+* setDash
+* setExtGState
+* setFontAndSize
+* setTextMatrix
 
 Developed By
 ------------
@@ -21,6 +32,7 @@ Developed By
 License
 -------
 
+    Copyright (C) 2012 Steadfast Innovation
     Copyright (C) 2012 Andrew Hughes
 
     Licensed under the Apache License, Version 2.0 (the "License");
