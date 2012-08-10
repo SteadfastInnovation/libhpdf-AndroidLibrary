@@ -7,6 +7,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#undef org_libharu_PdfDocument_HPDF_COMP_NONE
+#define org_libharu_PdfDocument_HPDF_COMP_NONE 0L
+#undef org_libharu_PdfDocument_HPDF_COMP_TEXT
+#define org_libharu_PdfDocument_HPDF_COMP_TEXT 1L
+#undef org_libharu_PdfDocument_HPDF_COMP_IMAGE
+#define org_libharu_PdfDocument_HPDF_COMP_IMAGE 2L
+#undef org_libharu_PdfDocument_HPDF_COMP_METADATA
+#define org_libharu_PdfDocument_HPDF_COMP_METADATA 4L
+#undef org_libharu_PdfDocument_HPDF_COMP_ALL
+#define org_libharu_PdfDocument_HPDF_COMP_ALL 15L
 /*
  * Class:     org_libharu_PdfDocument
  * Method:    initIDs
@@ -70,6 +80,14 @@ JNIEXPORT jboolean JNICALL Java_org_libharu_PdfDocument_saveToFile
  */
 JNIEXPORT jboolean JNICALL Java_org_libharu_PdfDocument_hasDoc
   (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     org_libharu_PdfDocument
+ * Method:    setCompressionMode
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_org_libharu_PdfDocument_setCompressionMode
+  (JNIEnv *, jobject, jint);
 
 #ifdef __cplusplus
 }

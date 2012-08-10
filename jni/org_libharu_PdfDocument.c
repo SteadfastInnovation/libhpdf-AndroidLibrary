@@ -161,3 +161,16 @@ Java_org_libharu_PdfDocument_hasDoc(JNIEnv *env, jclass cls, jint pdf) {
     }
     return JNI_FALSE;
 }
+
+/*
+ * Class:     org_libharu_PdfDocument
+ * Method:    setCompressionMode
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL
+Java_org_libharu_PdfDocument_setCompressionMode(JNIEnv *env, jobject obj, jint mode) {
+    /* Get mHPDFDocPointer */
+    jint pdf = (*env)->GetIntField(env, obj, mHPDFDocPointer);
+
+    HPDF_SetCompressionMode((HPDF_Doc) pdf, (HPDF_UINT) mode);
+}

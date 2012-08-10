@@ -24,6 +24,22 @@ public class PdfDocument {
         initIDs();
     }
 
+    /** PDF Compression Mode Values */
+
+    /** No compression */
+    public static final int HPDF_COMP_NONE = 0x0;
+    /** Compress the contents stream of the page */
+    public static final int HPDF_COMP_TEXT = 0x01;
+    /** Compress the streams of the image objects */
+    public static final int HPDF_COMP_IMAGE = 0x02;
+    /** Compress other stream data (fonts, cmaps, etc). */
+    public static final int HPDF_COMP_METADATA = 0x04;
+    /**
+     * Compress all stream data ({@link #HPDF_COMP_TEXT} | {@link #HPDF_COMP_IMAGE} |
+     * {@link #HPDF_COMP_METADATA})
+     */
+    public static final int HPDF_COMP_ALL = 0x0F;
+
     /** Whether this document has been closed (native memory has been freed) */
     private boolean mClosed = false;
 
@@ -194,4 +210,21 @@ public class PdfDocument {
     // setOpenAction
 
     // getCurrentPage
+
+    /**
+     * Set the mode of compression.
+     * 
+     * @param mode One or more of the following compression modes or'ed together:
+     *            <p>
+     *            {@link #HPDF_COMP_NONE}
+     *            <p>
+     *            {@link #HPDF_COMP_TEXT}
+     *            <p>
+     *            {@link #HPDF_COMP_IMAGE}
+     *            <p>
+     *            {@link #HPDF_COMP_METADATA}
+     *            <p>
+     *            {@link #HPDF_COMP_ALL}
+     */
+    public native void setCompressionMode(int mode);
 }
