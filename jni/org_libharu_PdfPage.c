@@ -551,7 +551,7 @@ JNIEXPORT void JNICALL
 Java_org_libharu_PdfPage_drawJpegImageFromFile(JNIEnv *env, jobject obj, jstring path, jfloat x,
         jfloat y, jfloat width, jfloat height) {
     jint page, pdf;
-    const jchar* filename; /* The path of the file to load the image from */
+    const char* filename; /* The path of the file to load the image from */
 
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -559,17 +559,17 @@ Java_org_libharu_PdfPage_drawJpegImageFromFile(JNIEnv *env, jobject obj, jstring
     pdf = (*env)->GetIntField(env, obj, mParentHPDFDocPointer);
 
     /* Get the filename as a native char array */
-    filename = (*env)->GetStringChars(env, path, NULL);
+    filename = (*env)->GetStringUTFChars(env, path, NULL);
 
     /* Load an HPDF_Image from the file */
-    HPDF_Image image = HPDF_LoadJpegImageFromFile((HPDF_Doc) pdf, (char*) filename);
+    HPDF_Image image = HPDF_LoadJpegImageFromFile((HPDF_Doc) pdf, filename);
 
     /* Actually draw the image */
     HPDF_Page_DrawImage((HPDF_Page) page, image, (HPDF_REAL) x, (HPDF_REAL) y, (HPDF_REAL) width,
             (HPDF_REAL) height);
 
     /* Release (free) the native char array */
-    (*env)->ReleaseStringChars(env, path, filename);
+    (*env)->ReleaseStringUTFChars(env, path, filename);
 }
 
 /*
@@ -615,7 +615,7 @@ JNIEXPORT void JNICALL
 Java_org_libharu_PdfPage_drawPngImageFromFile(JNIEnv *env, jobject obj, jstring path, jfloat x,
         jfloat y, jfloat width, jfloat height) {
     jint page, pdf;
-    const jchar* filename; /* The path of the file to load the image from */
+    const char* filename; /* The path of the file to load the image from */
 
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
@@ -623,17 +623,17 @@ Java_org_libharu_PdfPage_drawPngImageFromFile(JNIEnv *env, jobject obj, jstring 
     pdf = (*env)->GetIntField(env, obj, mParentHPDFDocPointer);
 
     /* Get the filename as a native char array */
-    filename = (*env)->GetStringChars(env, path, NULL);
+    filename = (*env)->GetStringUTFChars(env, path, NULL);
 
     /* Load an HPDF_Image from the file */
-    HPDF_Image image = HPDF_LoadPngImageFromFile((HPDF_Doc) pdf, (char*) filename);
+    HPDF_Image image = HPDF_LoadPngImageFromFile((HPDF_Doc) pdf, filename);
 
     /* Actually draw the image */
     HPDF_Page_DrawImage((HPDF_Page) page, image, (HPDF_REAL) x, (HPDF_REAL) y, (HPDF_REAL) width,
             (HPDF_REAL) height);
 
     /* Release (free) the native char array */
-    (*env)->ReleaseStringChars(env, path, filename);
+    (*env)->ReleaseStringUTFChars(env, path, filename);
 }
 
 /*
@@ -1069,18 +1069,18 @@ Java_org_libharu_PdfPage_setTextWordSpace(JNIEnv *env, jobject obj, jfloat value
 JNIEXPORT void JNICALL
 Java_org_libharu_PdfPage_showText(JNIEnv *env, jobject obj, jstring textString) {
     jint page;
-    const jchar* text;
+    const char* text;
 
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
 
     /* Get the text as a native char array */
-    text = (*env)->GetStringChars(env, textString, NULL);
+    text = (*env)->GetStringUTFChars(env, textString, NULL);
 
-    HPDF_Page_ShowText((HPDF_Page) page, (char*) text);
+    HPDF_Page_ShowText((HPDF_Page) page, text);
 
     /* Release (free) the native char array */
-    (*env)->ReleaseStringChars(env, textString, text);
+    (*env)->ReleaseStringUTFChars(env, textString, text);
 }
 
 /*
@@ -1091,18 +1091,18 @@ Java_org_libharu_PdfPage_showText(JNIEnv *env, jobject obj, jstring textString) 
 JNIEXPORT void JNICALL
 Java_org_libharu_PdfPage_showTextNextLine(JNIEnv *env, jobject obj, jstring textString) {
     jint page;
-    const jchar* text;
+    const char* text;
 
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
 
     /* Get the text as a native char array */
-    text = (*env)->GetStringChars(env, textString, NULL);
+    text = (*env)->GetStringUTFChars(env, textString, NULL);
 
-    HPDF_Page_ShowTextNextLine((HPDF_Page) page, (char*) text);
+    HPDF_Page_ShowTextNextLine((HPDF_Page) page, text);
 
     /* Release (free) the native char array */
-    (*env)->ReleaseStringChars(env, textString, text);
+    (*env)->ReleaseStringUTFChars(env, textString, text);
 }
 
 /*
@@ -1114,19 +1114,19 @@ JNIEXPORT void JNICALL
 Java_org_libharu_PdfPage_showTextNextLineEx(JNIEnv *env, jobject obj, jfloat wordSpace,
         jfloat charSpace, jstring textString) {
     jint page;
-    const jchar* text;
+    const char* text;
 
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
 
     /* Get the text as a native char array */
-    text = (*env)->GetStringChars(env, textString, NULL);
+    text = (*env)->GetStringUTFChars(env, textString, NULL);
 
     HPDF_Page_ShowTextNextLineEx((HPDF_Page) page, (HPDF_REAL) wordSpace, (HPDF_REAL) charSpace,
-            (char*) text);
+            text);
 
     /* Release (free) the native char array */
-    (*env)->ReleaseStringChars(env, textString, text);
+    (*env)->ReleaseStringUTFChars(env, textString, text);
 }
 
 /*
@@ -1150,18 +1150,18 @@ Java_org_libharu_PdfPage_stroke(JNIEnv *env, jobject obj) {
 JNIEXPORT void JNICALL
 Java_org_libharu_PdfPage_textOut(JNIEnv *env, jobject obj, jfloat x, jfloat y, jstring textString) {
     jint page;
-    const jchar* text;
+    const char* text;
 
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
 
     /* Get the text as a native char array */
-    text = (*env)->GetStringChars(env, textString, NULL);
+    text = (*env)->GetStringUTFChars(env, textString, NULL);
 
-    HPDF_Page_TextOut((HPDF_Page) page, (HPDF_REAL) x, (HPDF_REAL) y, (char*) text);
+    HPDF_Page_TextOut((HPDF_Page) page, (HPDF_REAL) x, (HPDF_REAL) y, text);
 
     /* Release (free) the native char array */
-    (*env)->ReleaseStringChars(env, textString, text);
+    (*env)->ReleaseStringUTFChars(env, textString, text);
 }
 
 /*
@@ -1173,17 +1173,17 @@ JNIEXPORT void JNICALL
 Java_org_libharu_PdfPage_textRect(JNIEnv *env, jobject obj, jfloat l, jfloat t, jfloat r, jfloat b,
         jstring textString, jint align) {
     jint page;
-    const jchar* text;
+    const char* text;
 
     /* Get mHPDFPagePointer */
     page = (*env)->GetIntField(env, obj, mHPDFPagePointer);
 
     /* Get the text as a native char array */
-    text = (*env)->GetStringChars(env, textString, NULL);
+    text = (*env)->GetStringUTFChars(env, textString, NULL);
 
     HPDF_Page_TextRect((HPDF_Page) page, (HPDF_REAL) l, (HPDF_REAL) t, (HPDF_REAL) r, (HPDF_REAL) b,
-            (char*) text, getHPDFTextAlign(align), NULL);
+            text, getHPDFTextAlign(align), NULL);
 
     /* Release (free) the native char array */
-    (*env)->ReleaseStringChars(env, textString, text);
+    (*env)->ReleaseStringUTFChars(env, textString, text);
 }
