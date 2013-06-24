@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">libhpdf sample</string>
+    <string name="generate_pdf_button_text">Generate PDF</string>
+
+</resources>
