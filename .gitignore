@@ -1,16 +1,35 @@
-#Android
-gen
-bin
-obj
-lint.xml
+# Built application files
+*.apk
+*.ap_
 
-#Eclipse
-.project
-.cproject
+# Files for the dex VM
+*.dex
 
-#Ant
+# Java class files
+*.class
+
+# Gradle cache
+.gradle/
+
+# Generated files
+bin/
+gen/
+out/
+build/
+
+# Local configuration file (sdk path, etc)
 local.properties
 
-#Other
-.DS_Store
-tmp
+# Local IDEA workspace and tasks
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+
+# IDEA library files
+.idea/libraries/
+
+# IDEA non-crucial project files
+*.iws
+
+# Windows thumbnail db
+*.DS_Store
