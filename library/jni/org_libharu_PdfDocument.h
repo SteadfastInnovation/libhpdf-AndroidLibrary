@@ -75,6 +75,13 @@ JNIEXPORT jboolean JNICALL Java_org_libharu_PdfDocument_saveToFile
 
 /*
  * Class:     org_libharu_PdfDocument
+ * Method:    setCreator
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_libharu_PdfDocument_setCreator(JNIEnv *, jobject, jstring);
+
+/*
+ * Class:     org_libharu_PdfDocument
  * Method:    hasDoc
  * Signature: (I)Z
  */
