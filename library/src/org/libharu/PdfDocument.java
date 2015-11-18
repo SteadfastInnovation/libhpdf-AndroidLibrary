@@ -189,6 +189,13 @@ public class PdfDocument {
      */
     public native boolean saveToFile(String filename);
 
+    /**
+     * Set the create field in the pdf info.
+     *
+     * @param creator The name of the creator.
+     */
+    public native void setCreator(String creator);
+
     // saveToStream/getStreamSize/readFromStream/resetStream
 
     /**
