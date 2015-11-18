@@ -151,6 +151,27 @@ Java_org_libharu_PdfDocument_saveToFile(JNIEnv *env, jobject obj, jstring filena
 
 /*
  * Class:     org_libharu_PdfDocument
+ * Method:    setCreator
+ * Signature: (Ljava/lang/String;)Z
+ */
+JNIEXPORT void JNICALL
+Java_org_libharu_PdfDocument_setCreator(JNIEnv *env, jobject obj, jstring creator) {
+
+    /* Get mHPDFDocPointer */
+    jint pdf = (*env)->GetIntField(env, obj, mHPDFDocPointer);
+
+    /* Get filename */
+    const char *name = (*env)->GetStringUTFChars(env, creator, NULL);
+
+    /* Set the creator info attribute */
+    HPDF_SetInfoAttr((HPDF_Doc) pdf, HPDF_INFO_CREATOR, name);
+
+    /* Release the native char array */
+    (*env)->ReleaseStringUTFChars(env, creator, name);
+}
+
+/*
+ * Class:     org_libharu_PdfDocument
  * Method:    hasDoc
  * Signature: (I)Z
  */
