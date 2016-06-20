@@ -19,10 +19,10 @@ png_sources := png.c \
                pngwtran.c \
                pngwutil.c
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/libpng-1.5.7
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/libpng-1.5.27
 LOCAL_MODULE     := png
 LOCAL_LDLIBS     := -lz
-LOCAL_SRC_FILES  := $(png_sources:%=libpng-1.5.7/%)
+LOCAL_SRC_FILES  := $(png_sources:%=libpng-1.5.27/%)
 
 include $(BUILD_STATIC_LIBRARY)
 
@@ -91,7 +91,7 @@ jni_sources := org_libharu_PdfDocument.c \
                org_libharu_PdfPage.c
 
 LOCAL_C_INCLUDES := \
-    $(LOCAL_PATH)/libpng-1.5.7 \
+    $(LOCAL_PATH)/libpng-1.5.27 \
     $(LOCAL_PATH)/libhpdf-2.3.0RC2/include \
     $(LOCAL_PATH)/libhpdf-2.3.0RC2/src \
     $(LOCAL_PATH)
