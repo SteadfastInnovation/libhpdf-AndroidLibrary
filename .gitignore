@@ -34,3 +34,12 @@ local.properties
 
 # Windows thumbnail db
 *.DS_Store
+
+.gradle
+/gradle
+/local.properties
+/.idea
+/build
+.DS_Store
+*.iml
+*.orig
